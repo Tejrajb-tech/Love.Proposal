@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ପ୍ରପୋଜାଲ୍‌ 💌</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    h1 {
+      color: #e63946;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #2ec4b6;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    #message {
+      font-size: 25px;
+      font-weight: bold;
+      color: #333;
+      min-height: 45px;
+      margin-bottom: 5px;
+    }
+
+    /* Subtitle Styling */
+    #subtitle {
+      font-size: 14px;
+      color: #777;
+      font-style: italic;
+      min-height: 25px;
+      margin-bottom: 20px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    #yesBtn {
+      background-color: #2ec4b6;
+      color: white;
+    }
+
+    #yesBtn:hover {
+      background-color: #209489;
+      transform: scale(1.05);
+    }
+
+    #noBtn {
+      background-color: #e63946;
+      color: white;
+    }
+
+    #noBtn:hover {
+      background-color: #c1121f;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music Player (Hidden) -->
+  <audio id="bgMusic" loop preload="auto">
+    <!-- Replace the src URL with your audio file link (MP3 format) -->
+    <source src="Love.mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="card">
+   <h2>Tamke dekhli ki mate pyar💖 hai gala </h2>
+    <h1>ତମେ ମୋର partner ବନବ କାଏ ?? 💖</h1>
+    
+    <!-- Main Message & Subtitle -->
+    <p id="message">ତୁମର୍‌ ଉତ୍ତର ଦିଅ... 👇</p>
+    <p id="subtitle">(Please select your answer)</p>
+
+    <div class="btn-container">
+      <button id="yesBtn" onclick="acceptProposal()">ହଁ (YES) 🥰</button>
+      <button id="noBtn" onclick="handleNoClick()">ନାଇଁ (NO) 😜</button>
+    </div>
+  </div>
+
+  <script>
+    let clickCount = 0;
+    const music = document.getElementById("bgMusic");
+
+    // Sambalpuri messages paired with English/Odia translation subtitles
+    const interactions = [
+      {
+        msg: "😭 ପ୍ଲିଜ... ଗୋଟେ ଥର ଭବିଦେଖ!🥺🙏",
+        sub: "Please think about it once 🥺"
+      },
+      {
+        msg: "😭ଏନ୍ତା ନି କର ଗୋ... ହଁ କହିଦିଅ 💔",
+        sub: "Don't do this, please say yes ❤️"
+      },
+       { msg: "😭 ଆଉ ଗୋଟେ ମୋକା ଦିଅ ପ୍ଲିଜ🥺❤️",
+        sub: "Give me one more chance please ✨"
+      },
+      {
+        msg: "😭 ନାଇଁ କହିବାର ମନା ଅଛେ! ହଁ କହ! 🙈",
+        sub: "Saying 'No' is strictly forbidden, say yes! 💖"
+      }
+    ];
+
+    // Play music on first button interaction (Bypasses modern browser autoplay restrictions)
+    function playAudio() {
+      if (music.paused) {
+        music.play().catch(e => console.log("Audio playback waiting for interaction."));
+      }
+    }
+
+    function handleNoClick() {
+      playAudio();
+      
+      const messageElement = document.getElementById("message");
+      const subtitleElement = document.getElementById("subtitle");
+      const noBtn = document.getElementById("noBtn");
+
+      if (clickCount < interactions.length) {
+        messageElement.innerText = interactions[clickCount].msg;
+        subtitleElement.innerText = interactions[clickCount].sub;
+        clickCount++;
+      }
+
+      // Hide "No" button on final click
+      if (clickCount === interactions.length) {
+        noBtn.classList.add("hidden");
+      }
+    }
+
+    function acceptProposal() {
+      playAudio();
+      
+      document.getElementById("message").innerText = "ୟେଏଏ!! 🥳 ମୁଁ ଜାନିଥିଲି ତୁମେ ହଁ କହେବ! ❤️✨";
+      document.getElementById("subtitle").innerText = "YAY!! I knew you would say YES! 7735161271 call kara ❤️";
+      
+      document.getElementById("noBtn").classList.add("hidden");
+      
+      const yesBtn = document.getElementById("yesBtn");
+      yesBtn.style.fontSize = "20px";
+      yesBtn.innerText = "ଲଭ୍‌ ୟୁ! ❤️";
+    }
+  </script>
+
+</body>
+</html>
